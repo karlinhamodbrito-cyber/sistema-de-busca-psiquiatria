@@ -1,269 +1,201 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Busca de Pacientes do Ambulatório Municipal de Psiquiatria</title>
+    <title>Sistema de Busca de Pacientes</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
     <style>
-        .form-container {
-            margin-top: 30px;
+        /* Customização de cores e fontes */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fc;
         }
-        .result-container {
-            margin-top: 20px;
+
+        .container {
+            max-width: 800px;
+            padding: 40px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #4a90e2;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 15px;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background-color: #4a90e2;
+            border-color: #4a90e2;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        .btn-primary:hover {
+            background-color: #357ab7;
+            border-color: #357ab7;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #555;
+        }
+
+        .input-group-text {
+            background-color: #f1f1f1;
+        }
+
+        .form-select {
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 16px;
         }
     </style>
 </head>
+
 <body>
 
-<div class="container form-container">
-    <h2>Sistema de Busca de Pacientes do Ambulatório Municipal de Psiquiatria</h2>
-    
-    <!-- Formulário para Adicionar Prontuário -->
-    <form id="formBuscaProntuario">
-        <div class="mb-3">
-            <label for="nomePaciente" class="form-label">Nome do Paciente</label>
-            <input type="text" class="form-control" id="nomePaciente" placeholder="Digite o nome do paciente" required>
-        </div>
-        <div class="mb-3">
-            <label for="nomeMae" class="form-label">Nome da Mãe</label>
-            <input type="text" class="form-control" id="nomeMae" placeholder="Digite o nome da mãe" required>
-        </div>
-        <div class="mb-3">
-            <label for="numeroProntuario" class="form-label">Número do Prontuário</label>
-            <input type="number" class="form-control" id="numeroProntuario" placeholder="Digite o número do prontuário" required>
-        </div>
-        <div class="mb-3">
-            <label for="caixa" class="form-label">Caixa</label>
-            <select class="form-select" id="caixa" required>
-                <option value="">Escolha a caixa</option>
-                <!-- Listando caixas de A a Z com 4 variações -->
-                <option value="A1">A1</option>
-                <option value="A2">A2</option>
-                <option value="A3">A3</option>
-                <option value="A4">A4</option>
-                <option value="B1">B1</option>
-                <option value="B2">B2</option>
-                <option value="B3">B3</option>
-                <option value="B4">B4</option>
-                <option value="C1">C1</option>
-                <option value="C2">C2</option>
-                <option value="C3">C3</option>
-                <option value="C4">C4</option>
-                <option value="D1">D1</option>
-                <option value="D2">D2</option>
-                <option value="D3">D3</option>
-                <option value="D4">D4</option>
-                <option value="E1">E1</option>
-                <option value="E2">E2</option>
-                <option value="E3">E3</option>
-                <option value="E4">E4</option>
-                <option value="F1">F1</option>
-                <option value="F2">F2</option>
-                <option value="F3">F3</option>
-                <option value="F4">F4</option>
-                <option value="G1">G1</option>
-                <option value="G2">G2</option>
-                <option value="G3">G3</option>
-                <option value="G4">G4</option>
-                <option value="H1">H1</option>
-                <option value="H2">H2</option>
-                <option value="H3">H3</option>
-                <option value="H4">H4</option>
-                <option value="I1">I1</option>
-                <option value="I2">I2</option>
-                <option value="I3">I3</option>
-                <option value="I4">I4</option>
-                <option value="J1">J1</option>
-                <option value="J2">J2</option>
-                <option value="J3">J3</option>
-                <option value="J4">J4</option>
-                <option value="K1">K1</option>
-                <option value="K2">K2</option>
-                <option value="K3">K3</option>
-                <option value="K4">K4</option>
-                <option value="L1">L1</option>
-                <option value="L2">L2</option>
-                <option value="L3">L3</option>
-                <option value="L4">L4</option>
-                <option value="M1">M1</option>
-                <option value="M2">M2</option>
-                <option value="M3">M3</option>
-                <option value="M4">M4</option>
-                <option value="N1">N1</option>
-                <option value="N2">N2</option>
-                <option value="N3">N3</option>
-                <option value="N4">N4</option>
-                <option value="O1">O1</option>
-                <option value="O2">O2</option>
-                <option value="O3">O3</option>
-                <option value="O4">O4</option>
-                <option value="P1">P1</option>
-                <option value="P2">P2</option>
-                <option value="P3">P3</option>
-                <option value="P4">P4</option>
-                <option value="Q1">Q1</option>
-                <option value="Q2">Q2</option>
-                <option value="Q3">Q3</option>
-                <option value="Q4">Q4</option>
-                <option value="R1">R1</option>
-                <option value="R2">R2</option>
-                <option value="R3">R3</option>
-                <option value="R4">R4</option>
-                <option value="S1">S1</option>
-                <option value="S2">S2</option>
-                <option value="S3">S3</option>
-                <option value="S4">S4</option>
-                <option value="T1">T1</option>
-                <option value="T2">T2</option>
-                <option value="T3">T3</option>
-                <option value="T4">T4</option>
-                <option value="U1">U1</option>
-                <option value="U2">U2</option>
-                <option value="U3">U3</option>
-                <option value="U4">U4</option>
-                <option value="V1">V1</option>
-                <option value="V2">V2</option>
-                <option value="V3">V3</option>
-                <option value="V4">V4</option>
-                <option value="W1">W1</option>
-                <option value="W2">W2</option>
-                <option value="W3">W3</option>
-                <option value="W4">W4</option>
-                <option value="X1">X1</option>
-                <option value="X2">X2</option>
-                <option value="X3">X3</option>
-                <option value="X4">X4</option>
-                <option value="Y1">Y1</option>
-                <option value="Y2">Y2</option>
-                <option value="Y3">Y3</option>
-                <option value="Y4">Y4</option>
-                <option value="Z1">Z1</option>
-                <option value="Z2">Z2</option>
-                <option value="Z3">Z3</option>
-                <option value="Z4">Z4</option>
-            </select>
-        </div>
-        <div class="mb-3">
-            <button type="button" class="btn btn-primary" onclick="adicionarProntuario()">Adicionar Prontuário</button>
-        </div>
-    </form>
+    <div class="container">
+        <h2>Sistema de Busca de Pacientes do Ambulatório Municipal de Psiquiatria</h2>
 
-    <!-- Formulário para Carregar o Arquivo Word -->
-    <div class="mb-3">
-        <label for="uploadWord" class="form-label">Carregar Arquivo Word</label>
-        <input type="file" class="form-control" id="uploadWord" accept=".docx" onchange="lerArquivoWord(event)">
+        <!-- Formulário para adicionar e buscar prontuários -->
+        <form>
+            <div class="input-group">
+                <span class="input-group-text" id="basic-addon1">🔍</span>
+                <input type="text" class="form-control" id="nomePaciente" placeholder="Nome do Paciente" aria-label="Nome do Paciente" aria-describedby="basic-addon1">
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-text" id="basic-addon2">👩‍👦</span>
+                <input type="text" class="form-control" id="nomeMae" placeholder="Nome da Mãe" aria-label="Nome da Mãe" aria-describedby="basic-addon2">
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-text" id="basic-addon3">📋</span>
+                <input type="number" class="form-control" id="numeroProntuario" placeholder="Número do Prontuário" aria-label="Número do Prontuário" aria-describedby="basic-addon3">
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-text" id="basic-addon4">📦</span>
+                <select class="form-select" id="caixa">
+                    <option value="">Escolha a Caixa</option>
+                    <option value="A1">Caixa A1</option>
+                    <option value="A2">Caixa A2</option>
+                    <option value="A3">Caixa A3</option>
+                    <option value="A4">Caixa A4</option>
+                    <option value="B1">Caixa B1</option>
+                    <option value="B2">Caixa B2</option>
+                    <option value="B3">Caixa B3</option>
+                    <option value="B4">Caixa B4</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <button type="button" class="btn btn-primary" onclick="adicionarProntuario()">Adicionar Prontuário</button>
+            </div>
+
+            <hr>
+
+            <!-- Carregar Arquivo Word -->
+            <div class="input-group">
+                <input type="file" class="form-control" id="uploadWord" accept=".docx">
+            </div>
+
+            <div class="mb-3 mt-3">
+                <button type="button" class="btn btn-success" onclick="pesquisarPaciente()">Pesquisar Paciente</button>
+            </div>
+
+        </form>
+
+        <!-- Resultados da Busca -->
+        <div class="result-container" id="resultados">
+            <!-- Resultados serão inseridos aqui -->
+        </div>
+
     </div>
 
-    <!-- Espaço para Buscar Paciente -->
-    <div class="mb-3">
-        <label for="nomePacienteBusca" class="form-label">Buscar Paciente</label>
-        <input type="text" class="form-control" id="nomePacienteBusca" placeholder="Digite o nome do paciente para buscar" required>
-    </div>
-    <div class="mb-3">
-        <button type="button" class="btn btn-success" onclick="pesquisarPaciente()">Buscar Paciente</button>
-    </div>
+    <script>
+        let prontuarios = [];
 
-    <!-- Resultados da Busca -->
-    <div class="result-container">
-        <div id="resultados"></div>
-    </div>
-</div>
+        function adicionarProntuario() {
+            const nomePaciente = document.getElementById('nomePaciente').value;
+            const nomeMae = document.getElementById('nomeMae').value;
+            const numeroProntuario = document.getElementById('numeroProntuario').value;
+            const caixa = document.getElementById('caixa').value;
 
-<script>
-    let prontuarios = [];
-    let docData = []; // Dados extraídos do arquivo Word
-
-    function adicionarProntuario() {
-        const nomePaciente = document.getElementById('nomePaciente').value;
-        const nomeMae = document.getElementById('nomeMae').value;
-        const numeroProntuario = document.getElementById('numeroProntuario').value;
-        const caixa = document.getElementById('caixa').value;
-
-        if(nomePaciente && nomeMae && numeroProntuario && caixa) {
-            const prontuario = {
-                nomePaciente,
-                nomeMae,
-                numeroProntuario,
-                caixa
-            };
-            prontuarios.push(prontuario);
-            alert('Prontuário adicionado com sucesso!');
-            limparFormulario();
-        } else {
-            alert('Por favor, preencha todos os campos!');
-        }
-    }
-
-    function limparFormulario() {
-        document.getElementById('nomePaciente').value = '';
-        document.getElementById('nomeMae').value = '';
-        document.getElementById('numeroProntuario').value = '';
-        document.getElementById('caixa').value = '';
-    }
-
-    function lerArquivoWord(event) {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const arrayBuffer = e.target.result;
-                mammoth.extractRawText({arrayBuffer: arrayBuffer})
-                    .then(function(result) {
-                        console.log('Texto extraído do arquivo Word:', result.value);  // Log do texto extraído
-                        processarTabela(result.value);
-                    })
-                    .catch(function(error) {
-                        console.error('Erro ao processar o arquivo Word:', error);  // Log de erro
-                        alert('Erro ao processar o arquivo Word. ' + error);
-                    });
-            };
-            reader.readAsArrayBuffer(file);
-        }
-    }
-
-    function processarTabela(texto) {
-        const linhas = texto.split('\n');
-        docData = [];
-        linhas.forEach(linha => {
-            const colunas = linha.split('\t');
-            if (colunas.length === 4) {
+            if (nomePaciente && nomeMae && numeroProntuario && caixa) {
                 const prontuario = {
-                    nomePaciente: colunas[0],
-                    nomeMae: colunas[1],
-                    numeroProntuario: colunas[2],
-                    caixa: colunas[3]
+                    nomePaciente,
+                    nomeMae,
+                    numeroProntuario,
+                    caixa
                 };
-                docData.push(prontuario);
+                prontuarios.push(prontuario);
+                alert('Prontuário adicionado com sucesso!');
+                limparFormulario();
+            } else {
+                alert('Por favor, preencha todos os campos!');
             }
-        });
-        alert('Arquivo carregado e processado com sucesso!');
-    }
-
-    function pesquisarPaciente() {
-        const nomePacienteBusca = document.getElementById('nomePacienteBusca').value;
-        const resultados = docData.filter(prontuario => prontuario.nomePaciente.toLowerCase().includes(nomePacienteBusca.toLowerCase()));
-        exibirResultados(resultados);
-    }
-
-    function exibirResultados(resultados) {
-        const divResultados = document.getElementById('resultados');
-        divResultados.innerHTML = '';
-        if(resultados.length > 0) {
-            let html = '<ul>';
-            resultados.forEach(prontuario => {
-                html += `<li><strong>Nome do Paciente:</strong> ${prontuario.nomePaciente} <br><strong>Caixa:</strong> ${prontuario.caixa} <br><strong>Número do Prontuário:</strong> ${prontuario.numeroProntuario} </li><hr>`;
-            });
-            html += '</ul>';
-            divResultados.innerHTML = html;
-        } else {
-            divResultados.innerHTML = 'Nenhum prontuário encontrado.';
         }
-    }
-</script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        function limparFormulario() {
+            document.getElementById('nomePaciente').value = '';
+            document.getElementById('nomeMae').value = '';
+            document.getElementById('numeroProntuario').value = '';
+            document.getElementById('caixa').value = '';
+        }
+
+        function pesquisarPaciente() {
+            const nomePacienteBusca = document.getElementById('nomePaciente').value;
+            const resultados = prontuarios.filter(prontuario => prontuario.nomePaciente.toLowerCase().includes(nomePacienteBusca.toLowerCase()));
+            exibirResultados(resultados);
+        }
+
+        function exibirResultados(resultados) {
+            const divResultados = document.getElementById('resultados');
+            divResultados.innerHTML = '';
+            if (resultados.length > 0) {
+                let html = '<ul>';
+                resultados.forEach(prontuario => {
+                    html += `<li><strong>Nome do Paciente:</strong> ${prontuario.nomePaciente} <br><strong>Caixa:</strong> ${prontuario.caixa} <br><strong>Número do Prontuário:</strong> ${prontuario.numeroProntuario} </li><hr>`;
+                });
+                html += '</ul>';
+                divResultados.innerHTML = html;
+            } else {
+                divResultados.innerHTML = 'Nenhum prontuário encontrado.';
+            }
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>
